@@ -39,7 +39,7 @@
         <script src="data/Publicopenspace_2.js"></script>
         <script src="data/Publictransportstop_3.js"></script>
         <script src="data/Freshfoodmarket_4.js"></script>
-        <script src="data/Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5.js"></script>
+        <script src="data/Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -114,8 +114,8 @@
             this.update();
             return this._div;
         };
-        title.update = function () { 
-            this._div.innerHTML = '<h2 style="line-height:1.5; padding-bottom:2px;">Barcelona, Spain<br>Cycling accessibility to fresh food markets, public transport stops and public open spaces</h2>';
+        title.update = function () {
+            this._div.innerHTML = '<h2 style="line-height:1.5; padding-bottom:2px;">Barcelona, Spain<br>Cycling accessibility to fresh food markets,  public transport stops and public open spaces</h2>';
         };
         title.addTo(map);
         var zoomControl = L.control.zoom({
@@ -181,6 +181,9 @@
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['aos_id'] !== null ? autolinker.link(String(feature.properties['aos_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['geom_public'] !== null ? autolinker.link(String(feature.properties['geom_public']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -281,6 +284,9 @@
                         <td colspan="2">' + (feature.properties['dest_oid'] !== null ? autolinker.link(String(feature.properties['dest_oid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? autolinker.link(String(feature.properties['osm_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['dest_name'] !== null ? autolinker.link(String(feature.properties['dest_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -303,7 +309,7 @@
         function style_Freshfoodmarket_4_0() {
             return {
                 pane: 'pane_Freshfoodmarket_4',
-                radius: 2.4000000000000004,
+                radius: 2.4,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -335,10 +341,23 @@
             },
         });
         bounds_group.addLayer(layer_Freshfoodmarket_4);
-        function pop_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5(feature, layer) {
+        function pop_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="all_safe_access_2km" colspan="2"><strong>all_safe_access_2km</strong><br />' + (feature.properties['all_safe_access_2km'] !== null ? autolinker.link(String(feature.properties['all_safe_access_2km']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Overall score (2km)</th>\
+                        <td class="visible-with-data" id="Overall score (2km)">' + (feature.properties['Overall score (2km)'] !== null ? autolinker.link(String(feature.properties['Overall score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Fresh/food market score (2km)</th>\
+                        <td class="visible-with-data" id="Fresh/food market score (2km)">' + (feature.properties['Fresh/food market score (2km)'] !== null ? autolinker.link(String(feature.properties['Fresh/food market score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Public transport stop score (2km)</th>\
+                        <td class="visible-with-data" id="Public transport stop score (2km)">' + (feature.properties['Public transport stop score (2km)'] !== null ? autolinker.link(String(feature.properties['Public transport stop score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Public open space score (2km)</th>\
+                        <td class="visible-with-data" id="Public open space score (2km)">' + (feature.properties['Public open space score (2km)'] !== null ? autolinker.link(String(feature.properties['Public open space score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -348,11 +367,16 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_0(feature) {
+        function style_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_0(feature) {
             if (feature.properties['all_safe_access_2km'] >= 0.000000 && feature.properties['all_safe_access_2km'] <= 0.250000 ) {
                 return {
-                pane: 'pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-                stroke: false, 
+                pane: 'pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+                opacity: 0.2,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.5, 
                 fill: true,
                 fillOpacity: 0.6,
                 fillColor: 'rgba(208,28,139,1.0)',
@@ -361,8 +385,13 @@
             }
             if (feature.properties['all_safe_access_2km'] >= 0.250000 && feature.properties['all_safe_access_2km'] <= 0.500000 ) {
                 return {
-                pane: 'pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-                stroke: false, 
+                pane: 'pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+                opacity: 0.2,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.5, 
                 fill: true,
                 fillOpacity: 0.6,
                 fillColor: 'rgba(243,204,228,1.0)',
@@ -371,8 +400,13 @@
             }
             if (feature.properties['all_safe_access_2km'] >= 0.500000 && feature.properties['all_safe_access_2km'] <= 0.750000 ) {
                 return {
-                pane: 'pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-                stroke: false, 
+                pane: 'pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+                opacity: 0.2,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.5, 
                 fill: true,
                 fillOpacity: 0.6,
                 fillColor: 'rgba(205,232,172,1.0)',
@@ -381,8 +415,13 @@
             }
             if (feature.properties['all_safe_access_2km'] >= 0.750000 && feature.properties['all_safe_access_2km'] <= 1.000000 ) {
                 return {
-                pane: 'pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-                stroke: false, 
+                pane: 'pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+                opacity: 0.2,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.5, 
                 fill: true,
                 fillOpacity: 0.6,
                 fillColor: 'rgba(77,172,38,1.0)',
@@ -390,22 +429,22 @@
             }
             }
         }
-        map.createPane('pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5');
-        map.getPane('pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5').style.zIndex = 405;
-        map.getPane('pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5').style['mix-blend-mode'] = 'normal';
-        var layer_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5 = new L.geoJson(json_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5, {
+        map.createPane('pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5');
+        map.getPane('pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5').style.zIndex = 405;
+        map.getPane('pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5').style['mix-blend-mode'] = 'normal';
+        var layer_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5 = new L.geoJson(json_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-            layerName: 'layer_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-            pane: 'pane_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
-            onEachFeature: pop_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5,
-            style: style_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_0,
+            dataVar: 'json_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+            layerName: 'layer_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+            pane: 'pane_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5',
+            onEachFeature: pop_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5,
+            style: style_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_0,
         });
-        bounds_group.addLayer(layer_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5);
-        map.addLayer(layer_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5);
+        bounds_group.addLayer(layer_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5);
+        map.addLayer(layer_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5);
         var overlaysTree = [
-            {label: 'Average safe cycling access to fresh food markets,  public transport stops<br>&nbsp;&nbsp;&nbsp;and public open spaces within 2 km network distance<br /><table><tr><td style="text-align: center;"><img src="legend/Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Lowaccess0250.png" /></td><td>Low access: 0 - 25%</td></tr><tr><td style="text-align: center;"><img src="legend/Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Moderateaccess25501.png" /></td><td>Moderate access: 25 - 50%</td></tr><tr><td style="text-align: center;"><img src="legend/Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Goodaccess50752.png" /></td><td>Good access: 50 - 75%</td></tr><tr><td style="text-align: center;"><img src="legend/Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Highaccess751003.png" /></td><td>High access: 75 - 100%</td></tr></table>', layer: layer_Averagesafecyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5},
+            {label: 'Score (%) for low stress cycling access to fresh food markets,  public transport stops<br>&nbsp;&nbsp;&nbsp;and public open spaces within 2 km network distance<br /><table><tr><td style="text-align: center;"><img src="legend/Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Lowaccess0250.png" /></td><td>Low access: 0 - 25%</td></tr><tr><td style="text-align: center;"><img src="legend/Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Moderateaccess25501.png" /></td><td>Moderate access: 25 - 50%</td></tr><tr><td style="text-align: center;"><img src="legend/Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Goodaccess50752.png" /></td><td>Good access: 50 - 75%</td></tr><tr><td style="text-align: center;"><img src="legend/Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5_Highaccess751003.png" /></td><td>High access: 75 - 100%</td></tr></table>', layer: layer_Scoreforlowstresscyclingaccesstofreshfoodmarketspublictransportstopsandpublicopenspaceswithin2kmnetworkdistance_5},
             {label: '<img src="legend/Freshfoodmarket_4.png" /> Fresh/food market', layer: layer_Freshfoodmarket_4},
             {label: '<img src="legend/Publictransportstop_3.png" /> Public transport stop', layer: layer_Publictransportstop_3},
             {label: '<img src="legend/Publicopenspace_2.png" /> Public open space', layer: layer_Publicopenspace_2},
