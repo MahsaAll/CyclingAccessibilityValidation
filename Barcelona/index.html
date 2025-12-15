@@ -116,30 +116,25 @@
             return this._div;
         };
         title.update = function () {
-            this._div.innerHTML = '<h2 style="line-height:1.5; padding-bottom:2px;">Barcelona, Spain<br>Score (%) for low stress cycling access to fresh food markets,  public transport stops and public open spaces within 2 km and 5 km network distance</h2>';
+            this._div.innerHTML = '<h2 style="line-height:1.5; padding-bottom:2px;">Barcelona, Spain<br>Score (%) for low stress cycling access to fresh food markets, public transport stops and public open spaces within 2 km and 5 km network distance</h2>';
         };
         title.addTo(map);
 
-
         // Accessibility description box (bottom right)
         var description = new L.Control({ position: 'bottomright' });
-
         description.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
             this.update();
             return this._div;
         };
-
         description.update = function () {
             this._div.innerHTML =
                 '<div style="font-size:11px; line-height:1.35; max-width:260px;">' +
-                'Accessibility is measured using sample points, which represent proxy origins for residential addresses across the city. For each sample point, it is tested whether fresh food markets, public open spaces and public transport stops can be reached within 2 km (about 5–15 minutes) and 5 km (about 15–30 minutes) along low stress cycling routes, allowing up to a 25% detour from the shortest path. For each destination type and distance, accessibility is recorded as 1 if at least one destination is reachable via low stress routes, otherwise as 0. Overall access is recorded as 1 only if all three destinations have low stress access.<br>The grid accessibility scores shown on the map represent the percentage of sample points within each grid cell with access to each destination type, and the overall access to all destination types.' +
+                'Accessibility is measured using sample points, which represent proxy origins for residential addresses across the city. For each sample point, it is tested whether fresh food markets, public open spaces and public transport stops can be reached within 2 km (about 5–15 minutes) and 5 km (about 15–30 minutes) along low stress cycling routes, allowing up to a 25% detour from the shortest path. Accessibility to each destination type is recorded as 1 if at least one destination is reachable via low stress routes, otherwise as 0. A sample point is considered to have accessibility if all three destinations have low stress access.<br>The grid accessibility scores shown on the map represent the percentage of sample points within each grid cell with accessibility to all destination types. The pop-up information also reports the percentage of sample points with access to each destination type separately. For example, if the accessibility score of a grid cell is 45%, this means that 45% of sample points in that grid cell have low stress access to all destination types.' +
                 '</div>';
         };
-
         description.addTo(map);
         
-
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
@@ -342,20 +337,20 @@
         function pop_5kmnetworkdistance_6(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Overall score (5km)</th>\
-                        <td class="visible-with-data" id="Overall score (5km)">' + (feature.properties['Overall score (5km)'] !== null ? autolinker.link(String(feature.properties['Overall score (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Accessibility score (5km)</th>\
+                        <td class="visible-with-data" id="Accessibility score (5km)">' + (feature.properties['Accessibility score (5km)'] !== null ? autolinker.link(String(feature.properties['Accessibility score (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Fresh/food market score (5km)</th>\
-                        <td class="visible-with-data" id="Fresh/food market score (5km)">' + (feature.properties['Fresh/food market score (5km)'] !== null ? autolinker.link(String(feature.properties['Fresh/food market score (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Fresh/food market (5km)</th>\
+                        <td class="visible-with-data" id="Destination score: Fresh/food market (5km)">' + (feature.properties['Destination score: Fresh/food market (5km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Fresh/food market (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public transport stop score (5km)</th>\
-                        <td class="visible-with-data" id="Public transport stop score (5km)">' + (feature.properties['Public transport stop score (5km)'] !== null ? autolinker.link(String(feature.properties['Public transport stop score (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Public transport stop (5km)</th>\
+                        <td class="visible-with-data" id="Destination score: Public transport stop (5km)">' + (feature.properties['Destination score: Public transport stop (5km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Public transport stop (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public open space score (5km)</th>\
-                        <td class="visible-with-data" id="Public open space score (5km)">' + (feature.properties['Public open space score (5km)'] !== null ? autolinker.link(String(feature.properties['Public open space score (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Public open space (5km)</th>\
+                        <td class="visible-with-data" id="Destination score: Public open space (5km)">' + (feature.properties['Destination score: Public open space (5km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Public open space (5km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -443,20 +438,20 @@
         function pop_2kmnetworkdistance_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Overall score (2km)</th>\
-                        <td class="visible-with-data" id="Overall score (2km)">' + (feature.properties['Overall score (2km)'] !== null ? autolinker.link(String(feature.properties['Overall score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Accessibility score (2km)</th>\
+                        <td class="visible-with-data" id="Accessibility score (2km)">' + (feature.properties['Accessibility score (2km)'] !== null ? autolinker.link(String(feature.properties['Accessibility score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Fresh/food market score (2km)</th>\
-                        <td class="visible-with-data" id="Fresh/food market score (2km)">' + (feature.properties['Fresh/food market score (2km)'] !== null ? autolinker.link(String(feature.properties['Fresh/food market score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Fresh/food market (2km)</th>\
+                        <td class="visible-with-data" id="Destination score: Fresh/food market (2km)">' + (feature.properties['Destination score: Fresh/food market (2km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Fresh/food market (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public transport stop score (2km)</th>\
-                        <td class="visible-with-data" id="Public transport stop score (2km)">' + (feature.properties['Public transport stop score (2km)'] !== null ? autolinker.link(String(feature.properties['Public transport stop score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Public transport stop (2km)</th>\
+                        <td class="visible-with-data" id="Destination score: Public transport stop (2km)">' + (feature.properties['Destination score: Public transport stop (2km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Public transport stop (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public open space score (2km)</th>\
-                        <td class="visible-with-data" id="Public open space score (2km)">' + (feature.properties['Public open space score (2km)'] !== null ? autolinker.link(String(feature.properties['Public open space score (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Destination score: Public open space (2km)</th>\
+                        <td class="visible-with-data" id="Destination score: Public open space (2km)">' + (feature.properties['Destination score: Public open space (2km)'] !== null ? autolinker.link(String(feature.properties['Destination score: Public open space (2km)']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
