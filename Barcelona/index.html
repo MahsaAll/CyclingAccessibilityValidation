@@ -119,6 +119,27 @@
             this._div.innerHTML = '<h2 style="line-height:1.5; padding-bottom:2px;">Barcelona, Spain<br>Score (%) for low stress cycling access to fresh food markets,  public transport stops and public open spaces within 2 km and 5 km network distance</h2>';
         };
         title.addTo(map);
+
+
+        // Accessibility description box (bottom right)
+        var description = new L.Control({ position: 'bottomright' });
+
+        description.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+
+        description.update = function () {
+            this._div.innerHTML =
+                '<div style="font-size:11px; line-height:1.35; max-width:260px;">' +
+                'Accessibility is measured using sample points, which represent proxy origins for residential addresses across the city. For each sample point, it is tested whether fresh food markets, public open spaces and public transport stops can be reached within 2 km (about 5–15 minutes) and 5 km (about 15–30 minutes) along low stress cycling routes, allowing up to a 25% detour from the shortest path.<br>For each destination type and distance, accessibility is recorded as 1 if at least one destination is reachable via low stress routes, otherwise as 0. Overall access is recorded as 1 only if all three destinations have low stress access.<br>TThe grid accessibility values shown on the map represent the percentage of sample points within each grid cell with access to each destination type, and the overall access to all destination types.' +
+                '</div>';
+        };
+
+        description.addTo(map);
+        
+
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
