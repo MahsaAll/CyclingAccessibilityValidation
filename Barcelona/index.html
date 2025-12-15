@@ -121,7 +121,7 @@
         title.addTo(map);
 
         // Accessibility description box (bottom right)
-        var description = new L.Control({ position: 'bottomright' });
+        var description = new L.Control({ position: 'bottomleft' });
         description.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
             this.update();
